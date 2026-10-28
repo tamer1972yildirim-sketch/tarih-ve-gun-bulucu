@@ -1,0 +1,959 @@
+/* ==========================================================================
+   Tarihte Bugün ve Gün Bulucu - Modern & Responsive Stil Dosyası
+   ========================================================================== */
+
+/* --- Değişkenler: Aydınlık Tema (Varsayılan) --- */
+:root {
+  --bg-gradient: linear-gradient(135deg, #f0f4ff 0%, #eef2f6 50%, #fdf2f8 100%);
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #ffffff;
+  --bg-input: #f8fafc;
+  --bg-input-hover: #f1f5f9;
+  --border-color: #e2e8f0;
+  --border-focus: #6366f1;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  
+  --primary: #4f46e5;
+  --primary-hover: #4338ca;
+  --primary-light: #e0e7ff;
+  --primary-gradient: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  
+  --secondary: #f1f5f9;
+  --secondary-hover: #e2e8f0;
+  --secondary-text: #334155;
+  
+  --world-accent: #0284c7;
+  --world-bg: #f0f9ff;
+  --world-border: #bae6fd;
+
+  --world-culture-accent: #9333ea;
+  --world-culture-bg: #faf5ff;
+  --world-culture-border: #e9d5ff;
+  
+  --turkey-accent: #e11d48;
+  --turkey-bg: #fff1f2;
+  --turkey-border: #fecdd3;
+
+  --turkey-culture-accent: #d97706;
+  --turkey-culture-bg: #fffbeb;
+  --turkey-culture-border: #fde68a;
+
+  --badge-day-bg: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+  --badge-day-text: #ffffff;
+
+  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 8px 20px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 16px 36px rgba(15, 23, 42, 0.08);
+  --shadow-colored: 0 10px 25px -5px rgba(79, 70, 229, 0.3);
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  
+  --transition-fast: 0.18s ease;
+  --transition-normal: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* --- Değişkenler: Karanlık Tema --- */
+[data-theme="dark"] {
+  --bg-gradient: linear-gradient(135deg, #0b0f19 0%, #111827 50%, #171328 100%);
+  --bg-surface: #1e293b;
+  --bg-surface-elevated: #283548;
+  --bg-input: #0f172a;
+  --bg-input-hover: #162032;
+  --border-color: #334155;
+  --border-focus: #818cf8;
+  
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #64748b;
+  
+  --primary: #6366f1;
+  --primary-hover: #818cf8;
+  --primary-light: rgba(99, 102, 241, 0.18);
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+  
+  --secondary: #334155;
+  --secondary-hover: #475569;
+  --secondary-text: #f1f5f9;
+  
+  --world-accent: #38bdf8;
+  --world-bg: rgba(2, 132, 199, 0.12);
+  --world-border: rgba(56, 189, 248, 0.3);
+
+  --world-culture-accent: #c084fc;
+  --world-culture-bg: rgba(147, 51, 234, 0.14);
+  --world-culture-border: rgba(192, 132, 252, 0.3);
+  
+  --turkey-accent: #fb7185;
+  --turkey-bg: rgba(225, 29, 72, 0.14);
+  --turkey-border: rgba(251, 113, 133, 0.3);
+
+  --turkey-culture-accent: #fbbf24;
+  --turkey-culture-bg: rgba(217, 119, 6, 0.14);
+  --turkey-culture-border: rgba(251, 191, 36, 0.3);
+
+  --badge-day-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --badge-day-text: #ffffff;
+
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.55);
+  --shadow-colored: 0 10px 25px -5px rgba(99, 102, 241, 0.4);
+}
+
+/* --- Temel Sıfırlamalar --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.6;
+  transition: background var(--transition-normal), color var(--transition-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* --- Konteyner Düzeni --- */
+.app-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 28px 20px 48px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Üst Başlık (Header) --- */
+.app-header {
+  margin-bottom: 28px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 20px 24px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.logo-icon {
+  width: 52px;
+  height: 52px;
+  background: var(--primary-gradient);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: var(--shadow-colored);
+  flex-shrink: 0;
+}
+
+.app-title {
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.app-subtitle {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+/* --- Tema Butonu (Güneş/Ay) --- */
+.theme-toggle {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  color: var(--text-primary);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--bg-input-hover);
+  border-color: var(--primary);
+  transform: scale(1.06);
+}
+
+.theme-toggle .moon-icon {
+  display: none;
+}
+
+.theme-toggle .sun-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .moon-icon {
+  display: block;
+}
+
+[data-theme="dark"] .theme-toggle .sun-icon {
+  display: none;
+}
+
+/* --- Genel Kart Tasarımı --- */
+.card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-normal);
+  overflow: hidden;
+}
+
+/* --- Tarih Giriş Kartı --- */
+.input-card {
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-step-badge {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--primary-light);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-title-group h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.btn-text {
+  background: transparent;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 0.88rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.btn-text:hover {
+  background: var(--primary-light);
+}
+
+/* --- Form Alanları --- */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 13px 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 500;
+  background-color: var(--bg-input);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.form-control:hover {
+  background-color: var(--bg-input-hover);
+  border-color: #cbd5e1;
+}
+
+.form-control:focus {
+  border-color: var(--border-focus);
+  background-color: var(--bg-surface);
+  box-shadow: 0 0 0 4px var(--primary-light);
+}
+
+select.form-control {
+  cursor: pointer;
+}
+
+/* --- Butonlar --- */
+.action-buttons {
+  display: flex;
+  gap: 14px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 24px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: inherit;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn-primary {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  flex: 2;
+  box-shadow: var(--shadow-colored);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -4px rgba(79, 70, 229, 0.45);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--secondary-text);
+  border: 1px solid var(--border-color);
+  flex: 1;
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+}
+
+/* --- Tatlı Uyarı Kartı (Toast / Alert) --- */
+.toast-alert {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  max-width: 420px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-color);
+  border-left: 6px solid #f59e0b;
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.96);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.toast-alert.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+}
+
+.toast-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.toast-body {
+  flex: 1;
+}
+
+.toast-body strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.toast-body p {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.toast-close {
+  background: transparent;
+  border: none;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color var(--transition-fast);
+}
+
+.toast-close:hover {
+  color: var(--text-primary);
+}
+
+/* --- Yükleniyor Spinner --- */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  gap: 16px;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 4px solid var(--border-color);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.85s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* --- Sonuç Paneli --- */
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* --- 1. Hero Sonuç Kartı (Haftanın Günü) --- */
+.result-hero-card {
+  padding: 28px;
+  position: relative;
+  background: linear-gradient(135deg, var(--bg-surface) 0%, var(--bg-surface-elevated) 100%);
+  border: 1px solid var(--border-color);
+}
+
+.result-hero-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.hero-tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--primary);
+}
+
+.hero-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.date-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.full-date-text {
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin: 4px 0 6px;
+  line-height: 1.2;
+}
+
+.time-ago-text {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* --- Gün Rozeti (Büyük ve Vurgulu) --- */
+.hero-day-badge {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.day-pretext {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+
+.day-name {
+  font-size: 2.3rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.1;
+  text-transform: uppercase;
+  text-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+}
+
+/* --- İstatistiki Rozetler --- */
+.hero-extra-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.stat-pill svg {
+  color: var(--primary);
+}
+
+/* --- 2. Olaylar 4 Kartlı Grid (2x2 Düzen) --- */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.event-column {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.column-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.world-column .column-header {
+  border-bottom-color: var(--world-border);
+}
+
+.world-culture-column .column-header {
+  border-bottom-color: var(--world-culture-border);
+}
+
+.turkey-column .column-header {
+  border-bottom-color: var(--turkey-border);
+}
+
+.turkey-culture-column .column-header {
+  border-bottom-color: var(--turkey-culture-border);
+}
+
+.column-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.world-icon {
+  background: var(--world-bg);
+  border: 1px solid var(--world-border);
+}
+
+.world-culture-icon {
+  background: var(--world-culture-bg);
+  border: 1px solid var(--world-culture-border);
+}
+
+.turkey-icon {
+  background: var(--turkey-bg);
+  border: 1px solid var(--turkey-border);
+}
+
+.turkey-culture-icon {
+  background: var(--turkey-culture-bg);
+  border: 1px solid var(--turkey-culture-border);
+}
+
+.column-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  line-height: 1.25;
+}
+
+.column-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --- Olay Listesi & Kartları --- */
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.event-item-card {
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  transition: all var(--transition-fast);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.event-item-card:hover {
+  transform: translateY(-2px);
+  background: var(--bg-input-hover);
+  box-shadow: var(--shadow-sm);
+}
+
+.world-column .event-item-card {
+  border-left: 4px solid var(--world-accent);
+}
+
+.world-culture-column .event-item-card {
+  border-left: 4px solid var(--world-culture-accent);
+}
+
+.turkey-column .event-item-card {
+  border-left: 4px solid var(--turkey-accent);
+}
+
+.turkey-culture-column .event-item-card {
+  border-left: 4px solid var(--turkey-culture-accent);
+}
+
+.event-item-card.is-target-year {
+  background: var(--primary-light);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-colored);
+}
+
+.event-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.event-year-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.world-column .event-year-badge {
+  background: var(--world-bg);
+  color: var(--world-accent);
+  border: 1px solid var(--world-border);
+}
+
+.world-culture-column .event-year-badge {
+  background: var(--world-culture-bg);
+  color: var(--world-culture-accent);
+  border: 1px solid var(--world-culture-border);
+}
+
+.turkey-column .event-year-badge {
+  background: var(--turkey-bg);
+  color: var(--turkey-accent);
+  border: 1px solid var(--turkey-border);
+}
+
+.turkey-culture-column .event-year-badge {
+  background: var(--turkey-culture-bg);
+  color: var(--turkey-culture-accent);
+  border: 1px solid var(--turkey-culture-border);
+}
+
+.target-badge {
+  background: var(--primary) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+.event-time-ago {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.event-text {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+  word-break: break-word;
+}
+
+.event-link {
+  align-self: flex-start;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+  transition: opacity var(--transition-fast);
+}
+
+.event-link:hover {
+  text-decoration: underline;
+  opacity: 0.85;
+}
+
+/* Boş Durum (Empty State - Spesifik Yıla Özel) */
+.empty-events-box {
+  padding: 32px 20px;
+  text-align: center;
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  border: 1.5px dashed var(--border-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  transition: all var(--transition-fast);
+}
+
+.empty-events-box:hover {
+  background: var(--bg-input-hover);
+}
+
+.empty-icon {
+  font-size: 2rem;
+  line-height: 1;
+  opacity: 0.85;
+}
+
+.empty-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+.empty-desc {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+.empty-badge {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+}
+
+/* --- Alt Bilgi (Footer) --- */
+.app-footer {
+  margin-top: auto;
+  padding-top: 36px;
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+/* --- Responsive Uyumluluk (Media Queries) --- */
+@media (max-width: 992px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 820px) {
+  .hero-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .hero-day-badge {
+    text-align: left;
+  }
+
+  .day-name {
+    font-size: 2rem;
+  }
+
+  .full-date-text {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 620px) {
+  .app-container {
+    padding: 16px 12px 36px;
+  }
+
+  .header-content {
+    padding: 16px;
+  }
+
+  .app-title {
+    font-size: 1.2rem;
+  }
+
+  .app-subtitle {
+    font-size: 0.82rem;
+  }
+
+  .input-card {
+    padding: 20px 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .toast-alert {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    max-width: none;
+  }
+}
